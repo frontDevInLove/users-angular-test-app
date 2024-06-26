@@ -1,0 +1,25 @@
+@import '../../variables';
+
+.user-row {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 5px;
+  border-bottom: 1px solid $border-color;
+
+  &:hover {
+    background-color: rgba( 155,169,191, .1);
+  }
+
+  &__btn:hover {
+    cursor: pointer;
+  }
+
+  &__name {
+
+    &_inactive {
+      color: rgba(15,15,28, .4);
+    }
+  }
+}

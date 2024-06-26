@@ -1,0 +1,4 @@
+<div class="user-row" *ngIf="item">
+  <div class="user-row__name" [ngClass]="{ 'user-row__name_inactive': !item.is_active}">{{ item.user_name }}</div>
+  <button class="user-row__btn" (click)="onRemoveClick(item.id)">Удалить</button>
+</div>

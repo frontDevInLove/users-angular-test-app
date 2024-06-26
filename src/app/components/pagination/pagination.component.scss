@@ -1,0 +1,43 @@
+@import '../../variables';
+
+.pagination {
+  border: 1px solid $border-color;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+
+  &__select {
+    height: 30px;
+  }
+
+  &__pages {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+
+  &__page-item {
+    width: 30px;
+    height: 30px;
+    border: 1px solid $border-color;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      background-color: rgba( 155,169,191, .1);
+      cursor: pointer;
+    }
+
+    &_active,
+    &_active:hover {
+      background-color: rgb( 106, 120, 212);
+      color: white;
+      cursor: default;
+    }
+  }
+}

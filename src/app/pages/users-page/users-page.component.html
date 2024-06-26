@@ -1,0 +1,16 @@
+<div class="users-page" [ngClass]="{ 'users-page_loading': loading$ | async}">
+  <div [hidden]="!(loading$ | async)" class="users-page__loader">Загрузка...</div>
+  <h1 class="users-page__header">Список контактов</h1>
+  <div class="users-page__view-changer">
+    <label><input type="radio" [value]="ViewKind.LIST" [formControl]="viewControl"/>Список</label>
+    <label><input type="radio" [value]="ViewKind.CARDS" [formControl]="viewControl"/> Карточки</label>
+  </div>
+
+  <div class="search__wrapper">
+    <input [formControl]="searchControl">
+  </div>
+
+  <app-users-list [users]="filteredUsers" [viewKind]="viewKind"></app-users-list>
+
+  <app-pagination [currentPage]="lastFetchedPaginationData.pageNumber" [total]="total" (pagingChanged)="onChangePagination($event)"/>
+</div>

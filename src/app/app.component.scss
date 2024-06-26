@@ -1,0 +1,9 @@
+@import './variables.scss';
+
+::ng-deep {
+  * [hidden] {
+    /** для корректной работы [hidden] у элементов с измененным значением display в стилях*/
+    display: none !important;
+  }
+}
+

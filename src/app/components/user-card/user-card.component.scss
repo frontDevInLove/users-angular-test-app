@@ -1,0 +1,19 @@
+@import '../../variables';
+
+.user-card {
+  border: 1px solid $border-color;
+  border-radius: 4px;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__btn {
+    cursor: pointer;
+  }
+
+  &__status {
+    font-size: 10px;
+    color: grey;
+  }
+}

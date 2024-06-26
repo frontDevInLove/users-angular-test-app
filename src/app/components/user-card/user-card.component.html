@@ -1,0 +1,7 @@
+<div class="user-card" *ngIf="item">
+  <div class="user-card__text">
+    <div class="user-card__name">{{ item.user_name }}</div>
+    <div class="user-card__status">{{ item.is_active ? 'Активен' : 'Не активен'}}</div>
+  </div>
+  <button class="user-card__btn" (click)="onRemoveClick(item.id)">Удалить</button>
+</div>

@@ -1,0 +1,17 @@
+<div class="pagination">
+  <div class="pagination__total"> Всего: {{ total }} записей</div>
+  <select class="pagination__select" [formControl]="perPageControl">
+    <option *ngFor="let option of perPageOptions" [ngValue]="option">{{ option }}</option>
+  </select>
+
+  <div class="pagination__pages">
+    <div
+      *ngFor="let pageItem of pages; trackBy: trackByFn"
+      class="pagination__page-item"
+      [ngClass]="{'pagination__page-item_active': currentPage === pageItem}"
+      (click)="onPageClick(pageItem)"
+    >
+      {{ pageItem }}
+    </div>
+  </div>
+</div>

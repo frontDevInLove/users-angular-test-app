@@ -1,0 +1,14 @@
+@import '../../variables';
+
+.list {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 20px;
+}
+
+.cardboard {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+}
+

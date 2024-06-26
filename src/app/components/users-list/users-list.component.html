@@ -1,0 +1,20 @@
+<ng-container *ngIf="viewKind === ViewKind.LIST; else cardboardTemplate">
+  <div class="list">
+    <app-user-row
+      *ngFor="let userItem of users; trackBy: trackByFn"
+      [item]="userItem"
+      (deleteClick)="onRemoveClick($event)"
+    >
+    </app-user-row>
+  </div>
+</ng-container>
+
+<ng-template #cardboardTemplate>
+  <div class="cardboard">
+    <app-user-card
+      *ngFor="let userItem of users; trackBy: trackByFn"
+      [item]="userItem"
+      (deleteClick)="onRemoveClick($event)"
+    ></app-user-card>
+  </div>
+</ng-template>

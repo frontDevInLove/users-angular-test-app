@@ -1,0 +1,53 @@
+.users-page {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 800px;
+  margin: 0 auto;
+  font-family: 'Roboto', sans-serif;
+  color: #0f0f1c;
+  position: relative;
+
+  &__loading {
+    pointer-events: none !important;
+  }
+
+  &__header {
+    text-align: center;
+    padding: 0 20px;
+  }
+
+  &__loader {
+    display: flex;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(255, 255, 255, .85);
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    color: rgba(15,15,28, .4);
+    z-index: 100;
+  }
+
+  &__view-changer {
+    display: flex;
+    gap: 10px;
+    padding-left: 20px;
+    
+    label {
+      cursor: pointer;
+    }
+  }
+}
+
+.search__wrapper {
+  padding-left: 20px;
+
+  input {
+    height: 30px;
+    width: 50%;
+  }
+}
