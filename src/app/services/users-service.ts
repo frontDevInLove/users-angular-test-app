@@ -32,6 +32,9 @@ export class UsersService {
    */
   private loading$$ = new BehaviorSubject<boolean>(false);
 
+  /** Параметры для запроса в статусе ожидания ответа */
+  private ongoingRequestParams: null | ListRequest = null;
+
   public constructor(private usersApi: UsersApi) {}
 
   /**
@@ -56,6 +59,7 @@ export class UsersService {
     payload: ListRequest,
   ): Observable<UserListResponseDto | null> {
     this.loading$$.next(true);
+    this.ongoingRequestParams = payload;
 
     return this.usersApi.getList(payload).pipe(
       tap((data) => {
@@ -74,6 +78,7 @@ export class UsersService {
       }),
       finalize(() => {
         this.loading$$.next(false);
+        this.ongoingRequestParams = null;
       }),
     );
   }
@@ -83,10 +88,15 @@ export class UsersService {
    * @param {string} id - id удаляемого пользователя
    */
   public async deleteUser(id: string) {
+    // возвращение loading к false происходит в fetchUsers
+    this.loading$$.next(true);
     await firstValueFrom(this.usersApi.remove(id));
 
-    const { items, pageNumber, itemsPerPage, search } =
-      this.userListData$$.value;
+    const paramsSource = this.ongoingRequestParams ?? this.userListData$$.value;
+
+    const { items } = this.userListData$$.value;
+
+    const { pageNumber, itemsPerPage, search } = paramsSource;
     const isDeletingUserLastOnPage = items.length === 1;
     const newPageNumber =
       isDeletingUserLastOnPage && pageNumber > 1 ? pageNumber - 1 : pageNumber;
