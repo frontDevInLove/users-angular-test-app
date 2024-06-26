@@ -6,11 +6,9 @@ import {
   catchError,
   finalize,
   of,
-  switchMap,
   tap,
   firstValueFrom,
 } from 'rxjs';
-import { RequestPagingData } from '../types/request-paging-data';
 
 @Injectable({
   providedIn: 'root',
@@ -63,7 +61,7 @@ export class UsersService {
       tap((data) => {
         this.userListData$$.next({ ...data, ...payload });
       }),
-      catchError((error: unknown) => {
+      catchError(() => {
         this.userListData$$.next({
           total_count: 0,
           items: [],
@@ -93,10 +91,12 @@ export class UsersService {
     const newPageNumber =
       isDeletingUserLastOnPage && pageNumber > 1 ? pageNumber - 1 : pageNumber;
 
-    return this.fetchUsers({
-      itemsPerPage,
-      pageNumber: newPageNumber,
-      search: search ?? '',
-    });
+    await firstValueFrom(
+      this.fetchUsers({
+        itemsPerPage,
+        pageNumber: newPageNumber,
+        search: search ?? '',
+      }),
+    );
   }
 }
